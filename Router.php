@@ -17,7 +17,7 @@ class Router
         $this->postRoutes[$url] = $fn;
     }
 
-    public function comprobarRutas()
+    public function comprobarRutas()    
     {
         
         // Proteger Rutas...
@@ -28,15 +28,13 @@ class Router
 
         // $auth = $_SESSION['login'] ?? null;
 
-        $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
+        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
 
-        $splitURL = explode('?', $currentUrl);
-
         if ($method === 'GET') {
-            $fn = $this->getRoutes[$splitURL[0]] ?? null;
+            $fn = $this->getRoutes[$currentUrl] ?? null;
         } else {
-            $fn = $this->postRoutes[$splitURL[0]] ?? null;
+            $fn = $this->postRoutes[$currentUrl] ?? null;
         }
 
 
