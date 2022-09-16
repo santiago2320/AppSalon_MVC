@@ -17,33 +17,23 @@ class Router
         $this->postRoutes[$url] = $fn;
     }
 
-    public function comprobarRutas()
-    {
-        
+    public function comprobarRutas(){      
         // Proteger Rutas...
-        session_start();
-
-        // Arreglo de rutas protegidas...
-        // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
-
-        // $auth = $_SESSION['login'] ?? null;
-
-        if (isset($_SERVER['PATH_INFO'])) {
-            $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
-        } else {
-            $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
-        }
-        
+        session_start();        
+        $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
-
+        
+        //dividimos la URL actual cada vez que exista un '?' eso indica que se están pasando variables por la url
+        $splitURL = explode('?', $currentUrl);
+        // debuguear($splitURL);
+ 
         if ($method === 'GET') {
-            $fn = $this->getRoutes[$currentUrl] ?? null;
+         $fn = $this->getRoutes[$splitURL[0]] ?? null; //$splitURL[0] contiene la URL sin variables 
         } else {
-            $fn = $this->postRoutes[$currentUrl] ?? null;
+         $fn = $this->postRoutes[$splitURL[0]] ?? null;
         }
-
-
-        if ( $fn ) {
+       
+        if ( $fn ) {            
             // Call user fn va a llamar una función cuando no sabemos cual sera
             call_user_func($fn, $this); // This es para pasar argumentos
         } else {
