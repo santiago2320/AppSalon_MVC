@@ -1,7 +1,9 @@
 node_modules/
 src/
 vendor/
+appsalon_mvc.sql
 .env
-
+package.json
+package-lock.json
 
 
