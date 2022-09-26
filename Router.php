@@ -60,3 +60,12 @@ class Router
         include_once __DIR__ . '/views/layout.php';
     }
 }
+
+/*
+--CONFIGURACION DE DB HEROKU
+
+mysql://b1b4f2af0de032:2ac523e4@us-cdbr-east-06.cleardb.net/heroku_d147e4a7d937014?reconnect=true
+heroku config:set DB_BD=heroku_d147e4a7d937014
+
+*/
+
