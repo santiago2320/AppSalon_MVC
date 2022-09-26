@@ -39,13 +39,14 @@ class Email{
 
           $contenido = "<html>";
           $contenido .= "<p> <strong>Hola ". $this->email ." </strong> Has creado tu cuenta en AppSalon, debes confirmar la cuenta presionando el siguiente enlace</p>";
-          $contenido .= "<p> Presiona aqui: <a href='http://localhost:3000/confirmar-cuenta?token=" . $this->token ."'>Confirmar cuenta</a>";
+          $contenido .= "<p> Presiona aqui: <a href='https://dry-caverns-20785.herokuapp.com/confirmar-cuenta?token=" . $this->token ."'>Confirmar cuenta</a>";
           $contenido .= "<p> Si tu no solicitaste este cuenta, puedes ignorar el mensaje </p>";
           $contenido .= "</html>";
           $mail->Body = $contenido;
 
           //Enviar el email
           $mail->send();
+
 
      }
 
