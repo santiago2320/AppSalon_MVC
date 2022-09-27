@@ -28,8 +28,8 @@ class ApiController {
                     'citaId' => $id,
                     'servicioId' =>  $idServicio
                ];
-               $citaServicio = new citasservicios($args);
-               $citaServicio->guardar();
+               $citasservicios = new citasservicios($args);
+               $citasservicios->guardar();
           }
           echo json_encode(['resultado' => $resultado]);
      }
